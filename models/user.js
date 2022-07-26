@@ -11,10 +11,13 @@ const user = new Schema(
         type: String,
         reqiuired: true,
         unique: true,
-    }, thoughts:{
+    }, thoughts:[{
+            type : Schema.Types.ObjectId,
+            ref : 'thought'
+    }], friends:{
+        type: Schema.Types.ObjectId,
+        ref : 'user'
 
-    },friends:{
-        
     }
 
 

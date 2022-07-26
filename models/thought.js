@@ -19,6 +19,7 @@ const thought = new Schema(
     }, reactions: {
         
 
+
     }
 
 

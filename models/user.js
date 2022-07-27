@@ -7,31 +7,34 @@ const userSchema = new Schema(
             unique: true,
             reqiuired: true,
             trimmed: true,
-    }, email: {
-        type: String,
-        reqiuired: true,
-        unique: true,
-    }, thoughts:[{
-            type : Schema.Types.ObjectId,
-            ref : 'thought'
-    }], 
-    friends:[{
-        type: Schema.Types.ObjectId,
-        ref : 'user'
+        }, email: {
+            type: String,
+            reqiuired: true,
+            unique: true,
+        }, thoughts: [{
+            type: Schema.Types.ObjectId,
+            ref: 'thought'
+        }],
+        friends: [{
+            type: Schema.Types.ObjectId,
+            ref: 'user'
 
-    }]
+        }]
     },
     {
         toJSON: {
-          getters: true,
-          virtual: true
-        },
-        id:false,
-
-})
-userSchema.virtual('friendCount').get(function () {
+            getters:true,
+            virtuals:true
+        }
+    }
+);
+userSchema.virtual('thoughtScount').get(function () {
+    return this.thoughts.length;
+  });
+  userSchema.virtual('friendsCount').get(function () {
     return this.friends.length;
   });
+
 
 const User = model('user', userSchema);
 

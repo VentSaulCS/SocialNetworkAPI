@@ -1,11 +1,9 @@
 const { ObjectId } = require('mongoose').Types;
 const { User, thought } = require('../models');
 
-
-
 module.exports = {
   // Get all Users
-  getUsers(req, res) {
+  getUser(req, res) {
     User.find().populate('thoughts').populate('user')
       .then(async (Users) => {
      
@@ -65,7 +63,7 @@ module.exports = {
   },
 
   // Add an Thought to a User
-  addthought(req, res) {
+  addThought(req, res) {
     console.log('You are adding an thought');
     console.log(req.body);
     User.findOneAndUpdate(
@@ -83,7 +81,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Remove thought from a User
-  removethought(req, res) {
+  removeThought(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.UserId },
       { $pull: { thought: { thoughtId: req.params.thoughtId } } },
